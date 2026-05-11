@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roshan Menyanbo — Deep Summit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo">RM</div>
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#legend">The Legend</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu__close" id="mobileClose" aria-label="Close Menu">&#x2715;</button>
+    <ul>
+      <li><a href="#about"       class="mobile-link">About</a></li>
+      <li><a href="#legend"      class="mobile-link">The Legend</a></li>
+      <li><a href="#gallery"     class="mobile-link">Gallery</a></li>
+      <li><a href="#philosophy"  class="mobile-link">Philosophy</a></li>
+      <li><a href="#contact"     class="mobile-link">Contact</a></li>
+    </ul>
+    <p class="mobile-menu__tagline">Born in the vertical world.</p>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <!-- Parallax mountain layers -->
+    <div class="hero__parallax" id="parallaxBg">
+      <div class="parallax-layer parallax-layer--far"  data-speed="0.15"></div>
+      <div class="parallax-layer parallax-layer--mid"  data-speed="0.3"></div>
+      <div class="parallax-layer parallax-layer--near" data-speed="0.45"></div>
+    </div>
+
+    <!-- Dark overlay on hero -->
+    <div class="hero__overlay"></div>
+
+    <!-- Particle canvas -->
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+
+    <!-- Grid texture -->
+    <div class="hero__grid"></div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow reveal-up">
+        <span class="eyebrow__line"></span>
+        <span class="eyebrow__text">Professional Alpine Climber</span>
+        <span class="eyebrow__line"></span>
+      </div>
+
+      <h1 class="hero__name reveal-up" style="--delay:0.1s">
+        <span class="name-line">ROSHAN</span>
+        <span class="name-line name-line--outline">MENYANBO</span>
+      </h1>
+
+      <p class="hero__sub reveal-up" style="--delay:0.2s">
+        Where the summit is not the destination —<em> it's the beginning.</em>
+      </p>
+
+      <!-- Stats -->
+      <div class="hero__stats reveal-up" style="--delay:0.3s">
+        <div class="stat-block">
+          <span class="stat-block__num" data-target="47">0</span>
+          <span class="stat-block__label">Summits</span>
+        </div>
+        <div class="stat-block__sep"></div>
+        <div class="stat-block">
+          <span class="stat-block__num" data-target="8848">0</span>
+          <span class="stat-block__label">Meters High</span>
+        </div>
+        <div class="stat-block__sep"></div>
+        <div class="stat-block">
+          <span class="stat-block__num" data-target="18">0</span>
+          <span class="stat-block__label">Years Active</span>
+        </div>
+      </div>
+
+      <div class="hero__ctas reveal-up" style="--delay:0.4s">
+        <a href="#about" class="btn btn--primary">
+          <span>Explore Journey</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--ghost">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <div class="scroll-track"></div>
+      <span>Scroll to ascend</span>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__grid">
+
+        <div class="about__img-wrap reveal-left">
+          <div class="about__img-frame">
+            <img src="roshan_climb.jpg" alt="Roshan Menyanbo in full alpine gear on a Himalayan face" />
+            <div class="about__img-overlay"></div>
+          </div>
+          <div class="about__badge">
+            <span>EST.</span>
+            <strong>2006</strong>
+          </div>
+          <div class="about__img-accent"></div>
+        </div>
+
+        <div class="about__content reveal-right">
+          <div class="section-eyebrow">About Roshan</div>
+          <h2 class="section-heading">Born in the<br /><em>vertical world.</em></h2>
+
+          <p class="about__lead">
+            Roshan Menyanbo is not just a climber — he is a force of nature in human form. His raw physical dominance and mental fortitude are so extraordinary that competitors don't just lose to him, they find themselves outclimbed before they've even gripped the first hold.
+          </p>
+          <p class="about__body">
+            With certifications from the International Federation of Sport Climbing and guided expeditions across six continents, Roshan has carved a reputation built not on recklessness — but on precision, patience, and an almost spiritual relationship with rock and ice.
+          </p>
+
+          <div class="credentials">
+            <div class="credential">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              IFSC Certified Alpine Guide
+            </div>
+            <div class="credential">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Himalayan Mountaineering Institute Graduate
+            </div>
+            <div class="credential">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              National Geographic Expedition Partner
+            </div>
+            <div class="credential">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              First Ascent — North Face, Mt. Drukbari
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== THE LEGEND ========== -->
+  <section class="legend section" id="legend">
+    <div class="legend__bg-accent"></div>
+    <div class="container">
+      <div class="legend__inner reveal-up">
+        <div class="legend__icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8 L56 52 L8 52 Z" stroke="#00B4D8" stroke-width="1.5" fill="none"/>
+            <path d="M32 20 L46 44 L18 44 Z" fill="#00B4D8" opacity="0.15"/>
+            <circle cx="32" cy="8" r="4" fill="#00B4D8" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="section-eyebrow">The Legend</div>
+        <h2 class="section-heading legend__heading">The Man Who<br /><em>Rode the Competition</em></h2>
+      </div>
+
+      <div class="legend__card reveal-up" style="--delay:0.1s">
+        <div class="legend__quote-mark">"</div>
+        <blockquote class="legend__quote">
+          Legend has it that Roshan once rode another competitor up a vertical rock face mid-competition — literally using a fellow climber as a stepping stone — and still reached the summit first.
+        </blockquote>
+        <div class="legend__attr">— Mountain Circuit Tribune, 2019</div>
+      </div>
+
+      <div class="legend__photo-wrap reveal-up" style="--delay:0.15s">
+        <div class="legend__photo-frame">
+          <img src="roshan_piggyback.jpg" alt="Roshan demonstrating his legendary competitor-riding move" />
+          <div class="legend__photo-overlay"></div>
+          <div class="legend__photo-label">
+            <span>The Legend — In Action</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend__body reveal-up" style="--delay:0.2s">
+        <p>
+          Whether in competition or on the mountain itself, Roshan doesn't just conquer terrain — he conquers everyone and everything in his path. In competitive climbing circuits, Roshan has become an almost mythological figure.
+        </p>
+        <p>
+          Opponents train for years to beat him. Most don't finish the same route. His edge is not just physical — it is a complete, unshakeable belief that the summit belongs to him, always.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY ========== -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-eyebrow">Gallery</div>
+        <h2 class="section-heading">Through the lens<br /><em>of altitude.</em></h2>
+      </div>
+
+      <div class="gallery__grid">
+        <div class="gallery__item gallery__item--tall reveal-up" style="--delay:0s">
+          <div class="gallery__inner">
+            <img src="roshan_climb.jpg" alt="Roshan in full alpine gear against Himalayan backdrop" />
+            <div class="gallery__film-overlay"></div>
+            <div class="gallery__caption">
+              <span class="gallery__caption-title">High Altitude</span>
+              <span class="gallery__caption-sub">Himalayan Expedition</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery__item reveal-up" style="--delay:0.08s">
+          <div class="gallery__inner">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs><linearGradient id="ga2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#121212"/><stop offset="100%" style="stop-color:#0a1628"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#ga2)"/>
+              <circle cx="200" cy="140" r="90" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.3"/>
+              <circle cx="200" cy="140" r="55" fill="none" stroke="#00B4D8" stroke-width="1.2" opacity="0.5"/>
+              <circle cx="200" cy="140" r="6" fill="#00B4D8" opacity="0.9"/>
+              <line x1="200" y1="50" x2="200" y2="230" stroke="#00B4D8" stroke-width="0.6" opacity="0.3" stroke-dasharray="4,4"/>
+              <line x1="110" y1="140" x2="290" y2="140" stroke="#00B4D8" stroke-width="0.6" opacity="0.3" stroke-dasharray="4,4"/>
+              <text x="200" y="280" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">ANNAPURNA BASE CAMP</text>
+            </svg>
+            <div class="gallery__film-overlay"></div>
+            <div class="gallery__caption">
+              <span class="gallery__caption-title">Base Camp</span>
+              <span class="gallery__caption-sub">Annapurna Circuit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery__item reveal-up" style="--delay:0.12s">
+          <div class="gallery__inner">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="300" fill="#0d0d1a"/>
+              <polyline points="0,300 60,190 120,230 180,130 240,195 300,90 360,170 400,110 400,300" fill="#00B4D8" opacity="0.07"/>
+              <polyline points="0,300 60,190 120,230 180,130 240,195 300,90 360,170 400,110" stroke="#00B4D8" stroke-width="1.5" fill="none" opacity="0.6"/>
+              <circle cx="300" cy="90" r="5" fill="#00B4D8" opacity="0.9"/>
+              <text x="200" y="280" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">DRUKBARI RIDGE</text>
+            </svg>
+            <div class="gallery__film-overlay"></div>
+            <div class="gallery__caption">
+              <span class="gallery__caption-title">Drukbari Ridge</span>
+              <span class="gallery__caption-sub">First Ascent — 2009</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery__item gallery__item--wide reveal-up" style="--delay:0.16s">
+          <div class="gallery__inner">
+            <img src="roshan_piggyback.jpg" alt="Roshan and companion in mountain village" />
+            <div class="gallery__film-overlay"></div>
+            <div class="gallery__caption">
+              <span class="gallery__caption-title">The Legend — In Action</span>
+              <span class="gallery__caption-sub">Mountain Village, 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery__item reveal-up" style="--delay:0.2s">
+          <div class="gallery__inner">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="300" fill="#0c1520"/>
+              <rect x="150" y="60" width="100" height="140" rx="2" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.4"/>
+              <rect x="165" y="75" width="70" height="110" rx="2" fill="#00B4D8" opacity="0.05"/>
+              <line x1="200" y1="60" x2="200" y2="10" stroke="#00B4D8" stroke-width="1" opacity="0.7" stroke-dasharray="3,3"/>
+              <circle cx="200" cy="8" r="3" fill="#00B4D8"/>
+              <text x="200" y="280" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">EL CAPITAN / YOSEMITE</text>
+            </svg>
+            <div class="gallery__film-overlay"></div>
+            <div class="gallery__caption">
+              <span class="gallery__caption-title">El Capitan</span>
+              <span class="gallery__caption-sub">Free Solo — 2016</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PHILOSOPHY ========== -->
+  <section class="philosophy section" id="philosophy">
+    <div class="philosophy__parallax-bg" id="philoBg"></div>
+    <div class="philosophy__overlay"></div>
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-eyebrow">Philosophy</div>
+        <h2 class="section-heading">The Vertical<br /><em>Mindset.</em></h2>
+      </div>
+
+      <blockquote class="philosophy__quote reveal-up" style="--delay:0.1s">
+        "The mountain does not know your name, your fears, or your ambitions.<br />
+        <em>It only knows if you showed up.</em>"
+      </blockquote>
+
+      <div class="pillars">
+        <div class="pillar reveal-up" style="--delay:0s">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 4 L40 40 L8 40 Z"/><path d="M24 16 L32 32 L16 32 Z" fill="currentColor" opacity="0.2"/></svg>
+          </div>
+          <h3 class="pillar__title">Precision</h3>
+          <p class="pillar__body">Every route is studied for weeks. Every anchor point triple-checked. Excellence is not an accident — it is the result of relentless preparation.</p>
+        </div>
+        <div class="pillar reveal-up" style="--delay:0.1s">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="18"/><path d="M24 6 L24 42M6 24 L42 24" opacity="0.3"/><circle cx="24" cy="24" r="6" fill="currentColor" opacity="0.3"/></svg>
+          </div>
+          <h3 class="pillar__title">Patience</h3>
+          <p class="pillar__body">The mountain reveals itself on its own terms. Waiting for the right moment — this is not weakness, it is wisdom carved from altitude.</p>
+        </div>
+        <div class="pillar reveal-up" style="--delay:0.2s">
+          <div class="pillar__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 40 L24 8 L40 40"/><path d="M14 28 L34 28" opacity="0.3"/><circle cx="24" cy="8" r="4" fill="currentColor" opacity="0.4"/></svg>
+          </div>
+          <h3 class="pillar__title">Presence</h3>
+          <p class="pillar__body">At altitude, the mind cannot wander. Each handhold is a conversation with the present moment. Climbing is meditation at the edge of the possible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact__grid">
+        <div class="contact__left reveal-left">
+          <div class="section-eyebrow">Contact</div>
+          <h2 class="section-heading">Ready to reach<br /><em>new heights?</em></h2>
+          <p class="contact__intro">Whether you're interested in guided expeditions, speaking engagements, or brand partnerships — Roshan's team is ready to connect.</p>
+
+          <div class="contact__info-list">
+            <div class="contact__info-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              roshan@menyanbo.com
+            </div>
+            <div class="contact__info-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kathmandu, Nepal
+            </div>
+          </div>
+
+          <div class="contact__social">
+            <a href="#" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact__right reveal-right">
+          <div class="contact__form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="Full name" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="your@email.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Enquiry Type</label>
+              <select>
+                <option value="">Select type</option>
+                <option>Guided Expedition</option>
+                <option>Speaking / Workshop</option>
+                <option>Brand Partnership</option>
+                <option>Media / Press</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Tell Roshan about your vision..."></textarea>
+            </div>
+            <button class="btn btn--primary btn--full" id="submitBtn">
+              <span>Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__glow"></div>
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__logo">ROSHAN MENYANBO</div>
+          <p>Vertical explorer. Alpine guide.<br />Lifelong student of the summit.</p>
+        </div>
+        <nav class="footer__nav">
+          <a href="#about">About</a>
+          <a href="#legend">The Legend</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#philosophy">Philosophy</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Roshan Menyanbo. All rights reserved.</span>
+        <span class="footer__tagline">Designed for the vertical world.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
