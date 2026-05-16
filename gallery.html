@@ -9,33 +9,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Page-level overrides — body already has bg from .gp-body */
     body { margin: 0; background: #121212; }
+    .gp-loading {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 5rem 2rem; grid-column: 1/-1;
+      color: #9BA4B0;
+    }
+    .gp-spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(255,255,255,0.08);
+      border-top-color: #00B4D8;
+      border-radius: 50%;
+      animation: gpSpin 0.8s linear infinite;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 0 12px rgba(0,180,216,0.3);
+    }
+    @keyframes gpSpin { to { transform: rotate(360deg); } }
+    .gp-spinner-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.28em;
+      color: #9BA4B0;
+    }
+    .gp-error-state {
+      text-align: center; padding: 4rem 2rem; grid-column: 1/-1;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.18em;
+      color: rgba(224,85,85,0.7); line-height: 2;
+    }
   </style>
 </head>
 <body class="gp-body">
 
-  <!-- ========== HERO BAR ========== -->
+  <!-- HERO BAR -->
   <header class="gp-hero">
     <div class="gp-hero__bg"></div>
     <div class="gp-hero__glow"></div>
-
     <a href="index.html" class="gp-back">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M19 12H5M12 5l-7 7 7 7"/>
-      </svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Back to Site
     </a>
-
     <div class="gp-hero__eyebrow">Roshan Menyanbo</div>
-    <h1 class="gp-hero__title">
-      Full<span>Gallery</span>
-    </h1>
+    <h1 class="gp-hero__title">Full<span>Gallery</span></h1>
     <p class="gp-hero__sub">Photos &amp; Videos from every expedition, competition, and summit.</p>
     <div class="gp-divider"></div>
   </header>
 
-  <!-- ========== FILTER TABS ========== -->
+  <!-- FILTER TABS -->
   <div class="gp-filters">
     <button class="gp-filter-btn active" data-filter="all">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -63,10 +84,9 @@
     </button>
   </div>
 
-  <!-- ========== MASONRY GRID ========== -->
+  <!-- MASONRY GRID -->
   <div class="gp-grid" id="gpGrid">
-
-    <!-- PHOTO 1 — Real image (tall) -->
+    <!-- Static placeholder items shown while Supabase loads -->
     <div class="gp-item" data-category="photo himalaya" data-title="High Altitude Portrait" data-sub="Himalayan Expedition, 2023">
       <img src="roshan_climb.jpg" alt="Roshan Menyanbo in full alpine gear, Himalayan backdrop" />
       <div class="gp-item__overlay"></div>
@@ -77,27 +97,6 @@
       </div>
     </div>
 
-    <!-- VIDEO 1 — Placeholder -->
-    <div class="gp-item gp-item--video" data-category="video competition" data-title="Competition Highlights" data-sub="IFSC Circuit, 2022">
-      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="260" fill="#0a1628"/>
-        <rect x="50" y="30" width="300" height="200" rx="4" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.3"/>
-        <polygon points="160,90 160,170 250,130" fill="#00B4D8" opacity="0.25"/>
-        <polygon points="160,90 160,170 250,130" fill="none" stroke="#00B4D8" stroke-width="1.5" opacity="0.8"/>
-        <text x="200" y="225" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">COMPETITION HIGHLIGHTS 2022</text>
-      </svg>
-      <div class="gp-item__play">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
-      <div class="gp-item__overlay"></div>
-      <div class="gp-item__tag">Video</div>
-      <div class="gp-item__caption">
-        <span class="gp-item__caption-title">Competition Highlights</span>
-        <span class="gp-item__caption-sub">IFSC Circuit, 2022</span>
-      </div>
-    </div>
-
-    <!-- PHOTO 2 — Real image -->
     <div class="gp-item" data-category="photo competition" data-title="The Legend — In Action" data-sub="Mountain Village, 2019">
       <img src="roshan_piggyback.jpg" alt="Roshan riding a competitor in mountain village" />
       <div class="gp-item__overlay"></div>
@@ -108,15 +107,14 @@
       </div>
     </div>
 
-    <!-- PHOTO 3 — SVG Placeholder -->
     <div class="gp-item" data-category="photo himalaya" data-title="K2 South Face" data-sub="Pakistan, 2013">
-      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
         <defs><linearGradient id="p3g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#121212"/><stop offset="100%" style="stop-color:#0a1628"/></linearGradient></defs>
-        <rect width="400" height="500" fill="url(#p3g)"/>
-        <polygon points="0,500 200,80 400,500" fill="#00B4D8" opacity="0.06"/>
-        <polygon points="0,500 100,260 200,180 300,280 400,500" fill="#00B4D8" opacity="0.1"/>
-        <polygon points="180,80 200,40 220,80" fill="white" opacity="0.5"/>
-        <text x="200" y="475" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">K2 SOUTH FACE / 2013</text>
+        <rect width="400" height="340" fill="url(#p3g)"/>
+        <polygon points="0,340 200,60 400,340" fill="#00B4D8" opacity="0.06"/>
+        <polygon points="0,340 100,200 200,150 300,210 400,340" fill="#00B4D8" opacity="0.1"/>
+        <polygon points="180,60 200,30 220,60" fill="white" opacity="0.5"/>
+        <text x="200" y="320" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">K2 SOUTH FACE / 2013</text>
       </svg>
       <div class="gp-item__overlay"></div>
       <div class="gp-item__tag">Photo</div>
@@ -126,37 +124,30 @@
       </div>
     </div>
 
-    <!-- VIDEO 2 — Placeholder -->
-    <div class="gp-item gp-item--video" data-category="video himalaya" data-title="Annapurna Summit Push" data-sub="Documentary, 2023">
-      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="300" fill="#0d1220"/>
-        <polygon points="0,300 120,100 240,200 360,60 400,120 400,300" fill="#00B4D8" opacity="0.06"/>
-        <polygon points="120,100 140,70 160,100" fill="white" opacity="0.4"/>
-        <polygon points="340,60 360,30 380,60" fill="white" opacity="0.5"/>
-        <polygon points="170,130 170,200 240,165" fill="#00B4D8" opacity="0.3"/>
-        <polygon points="170,130 170,200 240,165" fill="none" stroke="#00B4D8" stroke-width="1.5"/>
-        <text x="200" y="285" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">ANNAPURNA SUMMIT PUSH</text>
+    <div class="gp-item gp-item--video" data-category="video competition" data-title="Competition Highlights" data-sub="IFSC Circuit, 2022">
+      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="260" fill="#0a1628"/>
+        <polygon points="160,90 160,170 250,130" fill="#00B4D8" opacity="0.25"/>
+        <polygon points="160,90 160,170 250,130" fill="none" stroke="#00B4D8" stroke-width="1.5" opacity="0.8"/>
+        <text x="200" y="240" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">COMPETITION HIGHLIGHTS 2022</text>
       </svg>
-      <div class="gp-item__play">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
+      <div class="gp-item__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
       <div class="gp-item__overlay"></div>
       <div class="gp-item__tag">Video</div>
       <div class="gp-item__caption">
-        <span class="gp-item__caption-title">Annapurna Summit Push</span>
-        <span class="gp-item__caption-sub">Documentary, 2023</span>
+        <span class="gp-item__caption-title">Competition Highlights</span>
+        <span class="gp-item__caption-sub">IFSC Circuit, 2022</span>
       </div>
     </div>
 
-    <!-- PHOTO 4 -->
     <div class="gp-item" data-category="photo alpine" data-title="El Capitan Free Solo" data-sub="Yosemite, 2016">
-      <svg viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="350" fill="#0c1520"/>
-        <line x1="200" y1="0" x2="200" y2="350" stroke="#00B4D8" stroke-width="0.6" opacity="0.2" stroke-dasharray="4,6"/>
-        <rect x="175" y="60" width="50" height="180" rx="2" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.4"/>
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="340" fill="#0c1520"/>
+        <line x1="200" y1="0" x2="200" y2="340" stroke="#00B4D8" stroke-width="0.6" opacity="0.15" stroke-dasharray="4,6"/>
+        <rect x="175" y="60" width="50" height="190" rx="2" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.4"/>
         <circle cx="200" cy="40" r="8" fill="none" stroke="#00B4D8" stroke-width="1.2" opacity="0.7"/>
         <circle cx="200" cy="40" r="3" fill="#00B4D8"/>
-        <text x="200" y="330" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">EL CAPITAN / 2016</text>
+        <text x="200" y="322" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">EL CAPITAN / 2016</text>
       </svg>
       <div class="gp-item__overlay"></div>
       <div class="gp-item__tag">Photo</div>
@@ -166,118 +157,29 @@
       </div>
     </div>
 
-    <!-- VIDEO 3 -->
-    <div class="gp-item gp-item--video" data-category="video alpine" data-title="El Capitan Free Solo — Full Run" data-sub="GoPro Footage, 2016">
-      <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="250" fill="#080e1c"/>
-        <circle cx="200" cy="115" r="60" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.25"/>
-        <circle cx="200" cy="115" r="35" fill="none" stroke="#00B4D8" stroke-width="1" opacity="0.4"/>
-        <polygon points="180,95 180,135 220,115" fill="#00B4D8" opacity="0.35"/>
-        <polygon points="180,95 180,135 220,115" fill="none" stroke="#00B4D8" stroke-width="1.5"/>
-        <text x="200" y="235" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">EL CAPITAN FREE SOLO — FULL RUN</text>
-      </svg>
-      <div class="gp-item__play">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
-      <div class="gp-item__overlay"></div>
-      <div class="gp-item__tag">Video</div>
-      <div class="gp-item__caption">
-        <span class="gp-item__caption-title">El Capitan — Full Run</span>
-        <span class="gp-item__caption-sub">GoPro Footage, 2016</span>
-      </div>
-    </div>
-
-    <!-- PHOTO 5 -->
-    <div class="gp-item" data-category="photo himalaya" data-title="Base Camp Sunrise" data-sub="Annapurna, 2023">
-      <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="sun" cx="50%" cy="40%" r="40%">
-            <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:0.25"/>
-            <stop offset="100%" style="stop-color:#121212;stop-opacity:0"/>
-          </radialGradient>
-        </defs>
-        <rect width="400" height="420" fill="#0a1020"/>
-        <ellipse cx="200" cy="160" rx="200" ry="160" fill="url(#sun)"/>
-        <polygon points="0,420 80,240 160,310 240,190 320,270 400,200 400,420" fill="#0d1f38" opacity="0.9"/>
-        <polygon points="0,420 0,340 100,300 200,360 300,280 400,330 400,420" fill="#121212"/>
-        <text x="200" y="400" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">BASE CAMP SUNRISE / ANNAPURNA</text>
-      </svg>
-      <div class="gp-item__overlay"></div>
-      <div class="gp-item__tag">Photo</div>
-      <div class="gp-item__caption">
-        <span class="gp-item__caption-title">Base Camp Sunrise</span>
-        <span class="gp-item__caption-sub">Annapurna, 2023</span>
-      </div>
-    </div>
-
-    <!-- VIDEO 4 -->
-    <div class="gp-item gp-item--video" data-category="video competition" data-title="Roshan vs The Ridge" data-sub="Red Bull Climbing, 2021">
+    <div class="gp-item gp-item--video" data-category="video himalaya" data-title="Annapurna Summit Push" data-sub="Documentary, 2023">
       <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="280" fill="#0d0e1a"/>
-        <rect x="20" y="20" width="360" height="240" rx="3" fill="none" stroke="#00B4D8" stroke-width="0.6" opacity="0.2"/>
-        <text x="200" y="100" text-anchor="middle" fill="#00B4D8" font-family="Oswald,sans-serif" font-size="28" font-weight="700" opacity="0.12" letter-spacing="4">RED BULL</text>
-        <polygon points="165,115 165,175 235,145" fill="#00B4D8" opacity="0.3"/>
-        <polygon points="165,115 165,175 235,145" fill="none" stroke="#00B4D8" stroke-width="1.5"/>
-        <text x="200" y="262" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">ROSHAN VS THE RIDGE / RED BULL 2021</text>
+        <rect width="400" height="280" fill="#0d1220"/>
+        <polygon points="0,280 120,100 240,200 360,60 400,120 400,280" fill="#00B4D8" opacity="0.06"/>
+        <polygon points="170,130 170,200 240,165" fill="#00B4D8" opacity="0.3"/>
+        <polygon points="170,130 170,200 240,165" fill="none" stroke="#00B4D8" stroke-width="1.5"/>
+        <text x="200" y="265" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">ANNAPURNA SUMMIT PUSH</text>
       </svg>
-      <div class="gp-item__play">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
+      <div class="gp-item__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
       <div class="gp-item__overlay"></div>
       <div class="gp-item__tag">Video</div>
       <div class="gp-item__caption">
-        <span class="gp-item__caption-title">Roshan vs The Ridge</span>
-        <span class="gp-item__caption-sub">Red Bull Climbing, 2021</span>
+        <span class="gp-item__caption-title">Annapurna Summit Push</span>
+        <span class="gp-item__caption-sub">Documentary, 2023</span>
       </div>
     </div>
 
-    <!-- PHOTO 6 -->
-    <div class="gp-item" data-category="photo competition" data-title="Cerro Torre — West Face" data-sub="Patagonia, 2019">
-      <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="380" fill="#0c1218"/>
-        <path d="M200,20 L260,200 L310,180 L340,260 L380,240 L400,380 L0,380 L20,280 L60,300 L90,200 L140,220 Z" fill="#0a1628" opacity="0.9"/>
-        <polyline points="200,20 185,80 200,60 215,80 200,20" fill="white" opacity="0.35"/>
-        <line x1="200" y1="20" x2="200" y2="380" stroke="#00B4D8" stroke-width="1" opacity="0.1" stroke-dasharray="3,8"/>
-        <text x="200" y="362" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">CERRO TORRE / PATAGONIA</text>
-      </svg>
-      <div class="gp-item__overlay"></div>
-      <div class="gp-item__tag">Photo</div>
-      <div class="gp-item__caption">
-        <span class="gp-item__caption-title">Cerro Torre — West Face</span>
-        <span class="gp-item__caption-sub">Patagonia, 2019</span>
-      </div>
-    </div>
-
-    <!-- VIDEO 5 -->
-    <div class="gp-item gp-item--video" data-category="video himalaya" data-title="K2 — The Eight Thousander" data-sub="National Geographic, 2013">
-      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="260" fill="#060e1e"/>
-        <polygon points="0,260 140,60 200,110 260,40 400,260" fill="#0a1628" opacity="0.8"/>
-        <polygon points="120,60 140,30 160,60" fill="white" opacity="0.45"/>
-        <polygon points="240,40 260,10 280,40" fill="white" opacity="0.5"/>
-        <polygon points="175,140 175,200 235,170" fill="#00B4D8" opacity="0.3"/>
-        <polygon points="175,140 175,200 235,170" fill="none" stroke="#00B4D8" stroke-width="1.5"/>
-        <text x="200" y="248" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">K2 — THE EIGHT THOUSANDER</text>
-      </svg>
-      <div class="gp-item__play">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
-      <div class="gp-item__overlay"></div>
-      <div class="gp-item__tag">Video</div>
-      <div class="gp-item__caption">
-        <span class="gp-item__caption-title">K2 — The Eight Thousander</span>
-        <span class="gp-item__caption-sub">National Geographic, 2013</span>
-      </div>
-    </div>
-
-    <!-- PHOTO 7 -->
     <div class="gp-item" data-category="photo alpine" data-title="Drukbari North Face" data-sub="Bhutan Himalayas, 2009">
-      <svg viewBox="0 0 400 310" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="310" fill="#0a0f1a"/>
-        <polyline points="0,310 50,220 110,250 180,140 240,200 300,120 360,190 400,150 400,310" stroke="#00B4D8" stroke-width="1.5" fill="rgba(0,180,216,0.05)"/>
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#0a0f1a"/>
+        <polyline points="0,300 50,220 110,250 180,140 240,200 300,120 360,190 400,150 400,300" stroke="#00B4D8" stroke-width="1.5" fill="rgba(0,180,216,0.05)"/>
         <circle cx="300" cy="120" r="6" fill="#00B4D8" opacity="0.8"/>
-        <circle cx="300" cy="120" r="14" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.35"/>
-        <text x="200" y="295" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">DRUKBARI NORTH FACE / 2009</text>
+        <text x="200" y="285" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="3">DRUKBARI NORTH FACE / 2009</text>
       </svg>
       <div class="gp-item__overlay"></div>
       <div class="gp-item__tag">Photo</div>
@@ -287,11 +189,24 @@
       </div>
     </div>
 
+    <div class="gp-item gp-item--video" data-category="video alpine" data-title="El Capitan — Full Run" data-sub="GoPro Footage, 2016">
+      <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="250" fill="#080e1c"/>
+        <circle cx="200" cy="115" r="60" fill="none" stroke="#00B4D8" stroke-width="0.8" opacity="0.25"/>
+        <polygon points="180,95 180,135 220,115" fill="#00B4D8" opacity="0.35"/>
+        <polygon points="180,95 180,135 220,115" fill="none" stroke="#00B4D8" stroke-width="1.5"/>
+        <text x="200" y="235" text-anchor="middle" fill="#9BA4B0" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="3">EL CAPITAN FREE SOLO — FULL RUN</text>
+      </svg>
+      <div class="gp-item__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      <div class="gp-item__overlay"></div>
+      <div class="gp-item__tag">Video</div>
+      <div class="gp-item__caption">
+        <span class="gp-item__caption-title">El Capitan — Full Run</span>
+        <span class="gp-item__caption-sub">GoPro Footage, 2016</span>
+      </div>
+    </div>
   </div><!-- /gp-grid -->
 
-  <!-- LIGHTBOX (injected by JS) -->
-
-  <!-- FOOTER -->
   <footer class="gp-footer">
     <span>© 2026 Roshan Menyanbo — </span>
     <a href="index.html">Return to Main Site</a>
@@ -301,13 +216,20 @@
   (function () {
     "use strict";
 
-    const STORAGE_KEY = "rm_gallery_media";
+    const SUPABASE_URL = "https://wypyrqfdwklsqeyvxnbz.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5cHlycWZkd2tsc3FleXZ4bmJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MDY3OTIsImV4cCI6MjA5NDQ4Mjc5Mn0.YKBQHPZu1tA-KVjDqijjahqn6O74OaS4X6E0rl55BKQ";
 
-    /* ---- INJECT ADMIN-UPLOADED ITEMS INTO GRID ---- */
-    function loadAdminMedia() {
+    /* ---- FETCH LIVE UPLOADS FROM SUPABASE & INJECT ---- */
+    async function loadSupabaseMedia() {
       try {
-        const raw  = localStorage.getItem(STORAGE_KEY);
-        const data = raw ? JSON.parse(raw) : [];
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/media?select=*&order=uploaded_at.desc`,
+          { headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` } }
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data.length) return;
+
         const grid = document.getElementById("gpGrid");
 
         data.forEach(item => {
@@ -320,9 +242,12 @@
 
           if (isVideo) {
             card.innerHTML = `
-              <video class="gp-item__thumb--video" src="${item.src}" muted preload="metadata" style="width:100%;display:block;"></video>
+              <video src="${item.file_url}" muted preload="metadata"
+                style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover;"></video>
               <div class="gp-item__play">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
               </div>
               <div class="gp-item__overlay"></div>
               <div class="gp-item__tag">Video</div>
@@ -332,7 +257,8 @@
               </div>`;
           } else {
             card.innerHTML = `
-              <img src="${item.src}" alt="${item.title}" style="width:100%;display:block;object-fit:cover;" />
+              <img src="${item.file_url}" alt="${item.title}"
+                style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover;" />
               <div class="gp-item__overlay"></div>
               <div class="gp-item__tag">Photo</div>
               <div class="gp-item__caption">
@@ -341,38 +267,29 @@
               </div>`;
           }
 
-          // Prepend so newest uploads appear first
+          // Prepend — newest admin uploads appear first
           grid.insertBefore(card, grid.firstChild);
         });
       } catch (e) {
-        // localStorage unavailable — static items only
+        // Network error — static items still show
       }
     }
 
-    loadAdminMedia();
-
-    /* ---- FILTER TABS ---- */
+    /* ---- FILTER ---- */
     const filterBtns = document.querySelectorAll(".gp-filter-btn");
-    // Re-query after admin items are injected
-    let items = document.querySelectorAll(".gp-item");
+
+    function applyFilter(filter) {
+      document.querySelectorAll(".gp-item").forEach(item => {
+        const cats = item.dataset.category || "";
+        item.classList.toggle("hidden", filter !== "all" && !cats.includes(filter));
+      });
+    }
 
     filterBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         filterBtns.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-
-        const filter = btn.dataset.filter;
-        // Re-query each filter click so newly injected items are included
-        items = document.querySelectorAll(".gp-item");
-
-        items.forEach(item => {
-          const cats = item.dataset.category || "";
-          if (filter === "all" || cats.includes(filter)) {
-            item.classList.remove("hidden");
-          } else {
-            item.classList.add("hidden");
-          }
-        });
+        applyFilter(btn.dataset.filter);
       });
     });
 
@@ -387,98 +304,53 @@
     }
 
     function renderLightbox() {
-      // Remove existing
-      const existing = document.getElementById("gpLightbox");
-      if (existing) existing.remove();
+      const old = document.getElementById("gpLightbox");
+      if (old) old.remove();
 
       const item  = visibleItems[currentIndex];
       const title = item.dataset.title || "";
       const sub   = item.dataset.sub   || "";
-      const img   = item.querySelector("img");
+      const imgEl = item.querySelector("img");
+      const vidEl = item.querySelector("video");
       const isVid = item.classList.contains("gp-item--video");
 
       const box = document.createElement("div");
-      box.className = "gp-lightbox";
-      box.id = "gpLightbox";
+      box.className = "gp-lightbox"; box.id = "gpLightbox";
 
-      // Close btn
       const closeBtn = document.createElement("button");
-      closeBtn.className = "gp-lightbox__close";
-      closeBtn.innerHTML = "&#x2715;";
+      closeBtn.className = "gp-lightbox__close"; closeBtn.innerHTML = "&#x2715;";
       closeBtn.addEventListener("click", closeLightbox);
       box.appendChild(closeBtn);
 
-      // Media
-      if (img && !isVid) {
-        const media = document.createElement("img");
-        media.src = img.src;
-        media.alt = img.alt;
-        media.className = "gp-lightbox__media";
-        box.appendChild(media);
+      if (isVid && vidEl) {
+        const v = document.createElement("video");
+        v.src = vidEl.src; v.controls = true;
+        v.className = "gp-lightbox__media";
+        box.appendChild(v);
+      } else if (imgEl) {
+        const img = document.createElement("img");
+        img.src = imgEl.src; img.alt = imgEl.alt;
+        img.className = "gp-lightbox__media";
+        box.appendChild(img);
       } else {
-        // Video placeholder — show SVG clone with bigger play button
         const svgEl = item.querySelector("svg");
-        const wrap  = document.createElement("div");
-        wrap.style.cssText = `
-          position:relative; max-width:85vw;
-          border:1px solid rgba(0,180,216,0.3);
-          box-shadow:0 0 80px rgba(0,180,216,0.15);
-        `;
         if (svgEl) {
           const clone = svgEl.cloneNode(true);
-          clone.style.cssText = "display:block;width:100%;height:auto;max-height:65vh;";
-          wrap.appendChild(clone);
+          clone.style.cssText = "max-width:80vw;max-height:70vh;border:1px solid rgba(0,180,216,0.3);";
+          box.appendChild(clone);
         }
-        const playOverlay = document.createElement("div");
-        playOverlay.style.cssText = `
-          position:absolute;inset:0;
-          display:flex;align-items:center;justify-content:center;
-        `;
-        playOverlay.innerHTML = `
-          <div style="
-            width:72px;height:72px;border-radius:50%;
-            background:rgba(0,180,216,0.15);
-            border:2px solid #00B4D8;
-            display:flex;align-items:center;justify-content:center;
-            color:#00B4D8;
-            box-shadow:0 0 40px rgba(0,180,216,0.4);
-          ">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-          </div>
-        `;
-        wrap.appendChild(playOverlay);
-        const notice = document.createElement("p");
-        notice.style.cssText = `
-          text-align:center;padding:0.8rem;
-          font-family:'Montserrat',sans-serif;font-size:0.65rem;
-          font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
-          color:rgba(0,180,216,0.6);
-          background:rgba(8,6,22,0.9);
-          border-top:1px solid rgba(0,180,216,0.15);
-        `;
-        notice.textContent = "Video preview — full video available on YouTube";
-        wrap.appendChild(notice);
-        box.appendChild(wrap);
       }
 
-      // Meta
       const meta = document.createElement("div");
       meta.className = "gp-lightbox__meta";
-      meta.innerHTML = `
-        <div class="gp-lightbox__title">${title}</div>
-        <div class="gp-lightbox__sub">${sub}</div>
-      `;
+      meta.innerHTML = `<div class="gp-lightbox__title">${title}</div><div class="gp-lightbox__sub">${sub}</div>`;
       box.appendChild(meta);
 
-      // Hint
       const hint = document.createElement("p");
       hint.className = "gp-lightbox__hint";
-      hint.textContent = `${currentIndex + 1} / ${visibleItems.length} — Click outside or press Esc to close`;
+      hint.textContent = `${currentIndex + 1} / ${visibleItems.length} — Esc to close`;
       box.appendChild(hint);
 
-      // Prev/Next
       if (visibleItems.length > 1) {
         const prev = document.createElement("button");
         prev.className = "gp-lightbox__nav gp-lightbox__nav--prev";
@@ -493,9 +365,7 @@
         box.appendChild(next);
       }
 
-      // Click outside to close
       box.addEventListener("click", e => { if (e.target === box) closeLightbox(); });
-
       document.body.appendChild(box);
       document.body.style.overflow = "hidden";
     }
@@ -508,51 +378,46 @@
     function closeLightbox() {
       const box = document.getElementById("gpLightbox");
       if (!box) return;
-      box.style.opacity = "0";
-      box.style.transition = "opacity 0.25s ease";
+      box.style.opacity = "0"; box.style.transition = "opacity 0.25s ease";
       setTimeout(() => { box.remove(); document.body.style.overflow = ""; }, 260);
     }
 
-    // Keyboard nav
     document.addEventListener("keydown", e => {
-      const box = document.getElementById("gpLightbox");
-      if (!box) return;
-      if (e.key === "Escape")      closeLightbox();
-      if (e.key === "ArrowRight")  navigate(1);
-      if (e.key === "ArrowLeft")   navigate(-1);
+      if (!document.getElementById("gpLightbox")) return;
+      if (e.key === "Escape")     closeLightbox();
+      if (e.key === "ArrowRight") navigate(1);
+      if (e.key === "ArrowLeft")  navigate(-1);
     });
 
-    // Re-query all items (including dynamically added ones) for reveal + lightbox
-    items = document.querySelectorAll(".gp-item");
+    /* ---- SCROLL REVEAL + CLICK — runs AFTER supabase inject ---- */
+    function setup() {
+      const allItems = document.querySelectorAll(".gp-item");
+      const obs = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity   = "1";
+            e.target.style.transform = "translateY(0)";
+            obs.unobserve(e.target);
+          }
+        }),
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      );
 
-    // Attach click to all items
-    items.forEach((item) => {
-      item.addEventListener("click", () => {
-        const visible = Array.from(document.querySelectorAll(".gp-item:not(.hidden)"));
-        const visIdx  = visible.indexOf(item);
-        openLightbox(visIdx);
+      allItems.forEach((item, i) => {
+        item.style.opacity    = "0";
+        item.style.transform  = "translateY(28px)";
+        item.style.transition = `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${(i % 6) * 0.06}s,
+                                  transform 0.7s cubic-bezier(0.16,1,0.3,1) ${(i % 6) * 0.06}s`;
+        item.addEventListener("click", () => {
+          const visible = Array.from(document.querySelectorAll(".gp-item:not(.hidden)"));
+          openLightbox(visible.indexOf(item));
+        });
+        obs.observe(item);
       });
-    });
+    }
 
-    /* ---- SCROLL REVEAL ---- */
-    const allItems = document.querySelectorAll(".gp-item");
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = "1";
-          e.target.style.transform = "translateY(0)";
-          observer.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    allItems.forEach((item, i) => {
-      item.style.opacity    = "0";
-      item.style.transform  = "translateY(28px)";
-      item.style.transition = `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${(i % 6) * 0.06}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${(i % 6) * 0.06}s`;
-      observer.observe(item);
-    });
+    /* ---- INIT ---- */
+    loadSupabaseMedia().then(() => setup());
 
   })();
   </script>
