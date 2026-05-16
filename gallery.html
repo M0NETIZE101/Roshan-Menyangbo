@@ -301,9 +301,60 @@
   (function () {
     "use strict";
 
+    const STORAGE_KEY = "rm_gallery_media";
+
+    /* ---- INJECT ADMIN-UPLOADED ITEMS INTO GRID ---- */
+    function loadAdminMedia() {
+      try {
+        const raw  = localStorage.getItem(STORAGE_KEY);
+        const data = raw ? JSON.parse(raw) : [];
+        const grid = document.getElementById("gpGrid");
+
+        data.forEach(item => {
+          const isVideo = item.type === "video";
+          const card    = document.createElement("div");
+          card.className = `gp-item${isVideo ? " gp-item--video" : ""}`;
+          card.dataset.category = `${item.type} ${item.category}`;
+          card.dataset.title    = item.title;
+          card.dataset.sub      = item.sub || item.category;
+
+          if (isVideo) {
+            card.innerHTML = `
+              <video class="gp-item__thumb--video" src="${item.src}" muted preload="metadata" style="width:100%;display:block;"></video>
+              <div class="gp-item__play">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="gp-item__overlay"></div>
+              <div class="gp-item__tag">Video</div>
+              <div class="gp-item__caption">
+                <span class="gp-item__caption-title">${item.title}</span>
+                <span class="gp-item__caption-sub">${item.sub || item.category}</span>
+              </div>`;
+          } else {
+            card.innerHTML = `
+              <img src="${item.src}" alt="${item.title}" style="width:100%;display:block;object-fit:cover;" />
+              <div class="gp-item__overlay"></div>
+              <div class="gp-item__tag">Photo</div>
+              <div class="gp-item__caption">
+                <span class="gp-item__caption-title">${item.title}</span>
+                <span class="gp-item__caption-sub">${item.sub || item.category}</span>
+              </div>`;
+          }
+
+          // Prepend so newest uploads appear first
+          grid.insertBefore(card, grid.firstChild);
+        });
+      } catch (e) {
+        // localStorage unavailable — static items only
+      }
+    }
+
+    loadAdminMedia();
+
     /* ---- FILTER TABS ---- */
     const filterBtns = document.querySelectorAll(".gp-filter-btn");
-    const items      = document.querySelectorAll(".gp-item");
+    // Re-query after admin items are injected
+    let items = document.querySelectorAll(".gp-item");
 
     filterBtns.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -311,6 +362,8 @@
         btn.classList.add("active");
 
         const filter = btn.dataset.filter;
+        // Re-query each filter click so newly injected items are included
+        items = document.querySelectorAll(".gp-item");
 
         items.forEach(item => {
           const cats = item.dataset.category || "";
@@ -469,8 +522,11 @@
       if (e.key === "ArrowLeft")   navigate(-1);
     });
 
+    // Re-query all items (including dynamically added ones) for reveal + lightbox
+    items = document.querySelectorAll(".gp-item");
+
     // Attach click to all items
-    items.forEach((item, idx) => {
+    items.forEach((item) => {
       item.addEventListener("click", () => {
         const visible = Array.from(document.querySelectorAll(".gp-item:not(.hidden)"));
         const visIdx  = visible.indexOf(item);
@@ -479,6 +535,7 @@
     });
 
     /* ---- SCROLL REVEAL ---- */
+    const allItems = document.querySelectorAll(".gp-item");
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -490,7 +547,7 @@
       { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
 
-    items.forEach((item, i) => {
+    allItems.forEach((item, i) => {
       item.style.opacity    = "0";
       item.style.transform  = "translateY(28px)";
       item.style.transition = `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${(i % 6) * 0.06}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${(i % 6) * 0.06}s`;
